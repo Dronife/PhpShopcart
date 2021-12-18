@@ -10,27 +10,13 @@ use Src\Services\Shopcart;
 
 class ShopcartTest extends TestCase
 {
-    public function testSuccesfullyAddOneProduct(){
+    public function testProductCount(){
         $product = new Product('test', 'test', new Currency(10, 'EUR'));
-        $shopcart = new Shopcart($product);
-        $this->assertSame($shopcart->getLastProduct(), $product);
-    }
-    public function testSuccesfullyAddProducts(){
-        $product = new Product('test', 'test', new Currency(10, 'EUR'));
-        $shopcart = new Shopcart($product);
-        $product1 = new Product('test1', 'test1', new Currency(10, 'EUR'));
-        $shopcart->addItem($product1);
-        $product2 = new Product('test12', 'test12', new Currency(10, 'EUR'));
-        $shopcart->addItem($product2);
-        $this->assertSame($shopcart->getItemCount(), 3);
-    }
-    public function testCountOf(){
-        $identifier = 'test1';
-        $product = new Product($identifier, 'test2', new Currency(10, 'EUR'));
-        $shopcart = new Shopcart($product);
-        $product1 = new Product($identifier, 'test', new Currency(10, 'EUR'));
-        $shopcart->addItem($product1);
-        $this->assertSame($shopcart->getCountOfSameIdentifier('test1'), 2);
+        $product1 = new Product('test1', 'test', new Currency(10, 'EUR'));
+        $shopcart = new Shopcart($product, 2);
+        $shopcart->addItem($product, -1);
+        $shopcart->addItem($product1, 10);
+        $this->assertSame($shopcart->getCountOfProduct($product), 1);
     }
 
 }
