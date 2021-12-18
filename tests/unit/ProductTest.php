@@ -18,6 +18,23 @@ class ProductTest extends TestCase
 
     }
 
+    public function testSameProduct(){
+        $product = new Product( $this->identifier,  $this->name , $this->price);
+        $this->assertSame($product->equals($product), True);
+
+        $product1 = new Product( $this->identifier,  $this->name , null);
+        $this->assertSame($product->equals($product1), True);
+    }
+
+    public function testNotSameProducts(){
+        $product = new Product( $this->identifier,  $this->name , $this->price);
+        $product2 = new Product( $this->identifier,  'test' , $this->price);
+        $this->assertSame($product->equals($product2), False);
+
+        $product2 = new Product( $this->identifier,  'test' , -10);
+        $this->assertSame($product->equals($product2), False);
+    }
+
     public function testSuccessfullyGetIdentifier(){
         $product = new Product( $this->identifier,  $this->name , $this->price);
         $this->assertSame($product->getIdentifier(), $this->identifier);

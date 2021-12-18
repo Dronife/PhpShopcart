@@ -9,7 +9,7 @@ class Currency
     public function __construct($amount, $exchange)
     {
         $this->config = include('config.php');
-        $this->amount = $this->convertToDefault($amount, $exchange);
+        $this->amount = $this->convertToDefault($amount, str_replace(array("\n", "\r"), '',$exchange));
     }
 
     private function convertToDefault($amount, $exchange){
@@ -47,7 +47,7 @@ class Currency
     }
 
     private function getGBP($amount){
-        return $amount*$this->config['eur:gbp'];
+        return $amount/$this->config['eur:gbp'];
     }
     private function getUSD($amount){
         return $amount*$this->config['eur:usd'];

@@ -6,7 +6,7 @@ use Src\Services\Currency;
 
 class Product
 {
-    public function __construct($identifier, $name, $price)
+    public function __construct($identifier, $name, $price = null)
     {
         $this->identifier = $identifier;
         $this->name = $name;
@@ -35,6 +35,12 @@ class Product
     }
 
     public function equals($other){
-        return ($this->identifier == $other->getIdentifier() && $this->name == $other->getName() );
+        if($this->identifier == $other->getIdentifier() && $this->name == $other->getName()){
+            if($other->getPrice() <= 0 || $other->getPrice() == null)
+                return true;
+            return $this->price == $other->getPrice();
+        }
+        return False;
+            
     }
 }

@@ -27,7 +27,7 @@ class CurrencyTest extends TestCase
     public function testConvertionToEurosFromGBP(){
         $initValue = 1;
         $currency = new Currency($initValue, 'GBP');
-        $this->assertSame($currency->getAmount(), $initValue*$this->config['eur:gbp']);
+        $this->assertSame($currency->getAmount(), $initValue/$this->config['eur:gbp']);
     }
     public function testFailsToGetExchange(){
         $initValue = 1;

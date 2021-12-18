@@ -23,9 +23,6 @@ class Shopcart
 
         foreach($this->items as $id => $item){
             if($item['product']->equals($product)){
-                
-                if($item['product']->getPrice() != $product->getPrice())
-                    return;
 
                 $itemExistis = true;
                 $this->items[$id]['amount'] += $amount;
@@ -46,7 +43,7 @@ class Shopcart
         foreach($this->items as $item){
             $price += $item['product']->getPrice()*$item['amount'];
         }
-        return $price;
+        return round($price,2);
     }
 
     //for debugging purposes
