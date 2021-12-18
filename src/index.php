@@ -1,7 +1,10 @@
 <?php
+
+use Src\Services\FileManager;
+
 include_once('Services/FileManager.php');
-$configs = include('config.php');
-// echo exec('php vendor/bin/phpunit tests/unit/');
-// echo file_get_contents($configs['input_path']);
-// $fileManager = new \Services\FileManager($configs['input_path']);
-// var_dump( $fileManager->getContentInArray());
+$configs = include('./../config.php');
+
+
+$fileManager = new FileManager($configs['input_path_local']);
+var_dump( $fileManager->getContentInArray());
