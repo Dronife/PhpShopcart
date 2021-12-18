@@ -17,9 +17,6 @@ class Shopcart
         $this->addItem($product, $amount);
     }
 
-    public function getLastProduct(){
-        return end($this->items);
-    }
 
     public function addItem(Product $product, $amount)
     {
@@ -27,12 +24,17 @@ class Shopcart
 
         foreach($this->items as $id => $item){
             if($item['product']->equals($product)){
+                
+                if($item['product']->getPrice() != $product->getPrice())
+                    return;
+
                 $itemExistis = true;
                 $this->items[$id]['amount'] += $amount;
                 if($this->items[$id]['amount'] <= 0)
                     unset($this->items[$id]);
                 break;
             }
+            
         }
 
         if(!$itemExistis && $amount > 0)
@@ -40,13 +42,19 @@ class Shopcart
            
     }
 
+    public function getTotalPrice(){
+        $price = 0 ;
+        foreach($this->items as $item){
+            $price += $item['product']->getPrice()*$item['amount'];
+        }
+        return $price;
+    }
+
+    //for debugging purposes
     public function toString(){
         print_r($this->items);
     }
 
-    public function getItemCount(){
-        return count($this->items);
-    }
 
     public function getCountOfProduct($product){
         
