@@ -9,13 +9,12 @@ use Src\Services\Product;
 class Shopcart
 {
 
-    public function __construct(Product $product, $amount)
+    public function __construct()
     {
-        if($product == null)
-            throw new Exception('Product cannot be null');
         $this->items = [];
-        $this->addItem($product, $amount);
+
     }
+
 
 
     public function addItem(Product $product, $amount)
