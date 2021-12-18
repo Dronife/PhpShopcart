@@ -1,6 +1,6 @@
 <?php
 
-namespace Services;
+namespace Src\Services;
 
 use Exception;
 use Throwable;
