@@ -6,11 +6,11 @@ use Src\Services\Currency;
 
 class Product
 {
-    public function __construct($identifier, $name, Currency $currency = null)
+    public function __construct($identifier, $name, $price)
     {
         $this->identifier = $identifier;
         $this->name = $name;
-        $this->currency = $currency;
+        $this->price =$price;
     }
 
     public function setIdentifier($identifier){
@@ -20,8 +20,8 @@ class Product
     public function setName($name){
         $this->name = $name;
     }
-    public function setCurrency(Currency $currency){
-        $this->currency = $currency;
+    public function setPrice($price){
+        $this->price = $price;
     }
 
     public function getIdentifier(){
@@ -30,8 +30,8 @@ class Product
     public function getName(){
         return $this->name;
     }
-    public function getCurrency(){
-        return $this->currency->getAmount();
+    public function getPrice(){
+        return $this->price;
     }
 
     public function equals($other){
