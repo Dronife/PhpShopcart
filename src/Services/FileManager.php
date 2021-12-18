@@ -37,6 +37,7 @@ class FileManager
     private function getFileContents()
     {
         $this->fileExists();
+        
         try {
             return fopen($this->file, "r");
         } catch (Throwable $e) {
