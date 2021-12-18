@@ -28,6 +28,13 @@ class FileManagerTest extends TestCase
         $this->expectException(Exception::class);
         $this->assertIsArray($fileManager->getContentInArray());
     }
+    
+    public function testFailsToParseFiveAttributesWithWrongSeparator(){
+        $fileManager = new FileManager($this->config['input_path'], ',');
+        $this->assertIsArray($fileManager->getContentInArray());
+        $this->assertSame(count($fileManager->getContentInArray()[0]),1);
+        
+    }
    
 
 }

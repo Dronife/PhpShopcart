@@ -7,9 +7,10 @@ use Throwable;
 
 class FileManager
 {
-    public function __construct($file)
+    public function __construct($file, $separator = ';')
     {
         $this->file = $file;
+        $this->separator = $separator;
     }
 
     public function getFilePath(): string
@@ -23,16 +24,18 @@ class FileManager
         $array_content = [];
         try {
             while (($line = fgets($raw_content)) !== false) {
-                $components = explode(';', $line);
+                $components = explode( $this->separator, $line);
                 $array_content[] = $components;
             }
             fclose($raw_content);
         } catch (Throwable $e) {
-            print 'Something went wrong';
+            print 'Something went wrong parsing file';
         }
 
         return  $array_content;
     }
+
+    
 
     private function getFileContents()
     {
