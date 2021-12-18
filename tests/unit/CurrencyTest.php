@@ -39,4 +39,12 @@ class CurrencyTest extends TestCase
         $this->expectException(Exception::class);
         $currency = new Currency($initValue, 'GBP');
     }
+
+    public function setCurrency() {
+        $initValue = 1;
+        $currency = new Currency($initValue, 'USD');
+        $newValue = 10;
+        $currency->setInstance($newValue, 'USD');
+        $this->assertSame($currency->getAmount(), $newValue*$this->config['eur:usd']);
+    }
 }

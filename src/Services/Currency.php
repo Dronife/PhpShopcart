@@ -38,6 +38,10 @@ class Currency
         }
     }
 
+    public function setInstance($amount, $exchange){
+        $this->amount = $this->convertToDefault($amount, $exchange);
+    }
+
     public function getAmount(){
         return $this->amount;
     }
