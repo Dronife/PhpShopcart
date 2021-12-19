@@ -29,19 +29,23 @@ class ShopcartTest extends TestCase
     }
 
     public function testGetTotalCarPrice(){
-        $product = new Product('product', 'product', 10);
+        $price = (new Currency(10, 'EUR'))->getAmount();
+        $product = new Product('product', 'product', $price);
         
         $shopcart = new Shopcart();
         $shopcart->addItem($product, 2); 
         $shopcart->addItem($product, -1); 
 
         $product1 = new Product('product1', 'product1', 22);
-        $product2 = new Product('product2', 'product2', 100);
+
+        $price2 = (new Currency(88, 'GBP'))->getAmount();
+        $product2 = new Product('product2', 'product2', $price2);
+
         $shopcart->addItem($product1, 10); 
         $shopcart->addItem($product2, 1);  
 
         //22*10 + 100*1 + 1*10 = 330
-        $this->assertSame($shopcart->getTotalPrice(), 330);
+        $this->assertSame(round($shopcart->getTotalPrice()), round(330));
     }
 
 }
