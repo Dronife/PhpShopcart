@@ -1,4 +1,9 @@
 
+## Task
+```
+  Create application with php, to read shopcart and print total amount of price.
+```
+
 ## Prepare docker image
 ```bash
   docker build -t <name-your-image-here> .
